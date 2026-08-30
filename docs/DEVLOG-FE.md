@@ -54,5 +54,9 @@ The `Kayara` folder previously held an empty wrapper plus a `japanese-exam-app` 
 
 ### The Tech Debt
 
-The Vercel project runs from a local CLI deploy linked to `gievano/kayara`, but the Git integration import of the repo into the new `kayara` project was not re-established, so pushes to GitHub do not auto-deploy; it currently deploys via `vercel --prod` from the linked folder. Fixing the Choukai image visibility bug from the previous entry remains outstanding.
+The Vercel project `kayara` now connects to the GitHub repo `gievano/kayara` (linked via the Vercel API: type github, repo `kayara`, production branch `main`, createDeployments enabled). Auto-deploy was verified by triggering a production deployment from `main`, which built successfully to READY in the Vercel cloud. The live URL is `https://kayara-jlpt.vercel.app` (the bare `kayara.vercel.app` subdomain is taken by another account, so Vercel auto-generates `kayara-opal.vercel.app`, which is unused; we keep `kayara-jlpt`). The old `japanese-exam-app` Vercel project was deleted.
+
+### The Tech Debt
+
+Fixing the Choukai image visibility bug from a previous entry remains outstanding. When a fresh push to GitHub now auto-deploys, environment variables on the machine (`.env.local`) are not on Vercel, so env-dependent behavior must be set in the Vercel project dashboard if any is added later.
 
