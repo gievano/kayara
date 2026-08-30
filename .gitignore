@@ -46,3 +46,7 @@ next-env.d.ts
 
 # graphify knowledge graph output (regenerated locally, not tracked)
 /graphify-out/
+
+# local agent instructions (not project code)
+AGENTS.md
+CLAUDE.md
