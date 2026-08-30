@@ -14,14 +14,14 @@ App sudah bisa dicoba langsung di [kayara-jlpt.vercel.app](https://kayara-jlpt.v
 
 ## Pilihan level
 
-| Level | Fokus |
-|-------|-------|
-| N5 | Kosakata, pola kalimat, dan pemahaman paling dasar |
-| N4 | Membaca dan grammar untuk situasi sehari-hari |
-| N3 | Jembatan menuju teks dan percakapan yang lebih kompleks |
-| N2 | Latihan bahasa akademik dan profesional |
-| N1 | Uji nuansa, kecepatan, dan pemahaman tingkat lanjut |
+| Level | Fokus                                                   |
+| ----- | ------------------------------------------------------- |
+| N5    | Kosakata, pola kalimat, dan pemahaman paling dasar      |
+| N4    | Membaca dan grammar untuk situasi sehari-hari           |
+| N3    | Jembatan menuju teks dan percakapan yang lebih kompleks |
+| N2    | Latihan bahasa akademik dan profesional                 |
+| N1    | Uji nuansa, kecepatan, dan pemahaman tingkat lanjut     |
 
 ## Teknologi
 
-Dibangun dengan Next.js 16, React 19, TypeScript, dan Tailwind CSS v4. Soal disimpan di `data/questions.json`. Audio Choukai diputar lewat tautan di data, jadi repositori tetap ringan dan deploy di Vercel berjalan cepat.
+Dibangun dengan Next.js 16, React 19, TypeScript, dan Tailwind CSS v4.
