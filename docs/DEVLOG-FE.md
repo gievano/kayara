@@ -41,3 +41,18 @@ The `public/audio` folder held about 1.5 GB of MP3 files, too large for a Git re
 ### The Tech Debt
 
 Choukai images were found to be present in `data/questions.json` (1,383 listening questions with images) but deliberately hidden in the exam UI, which only renders images outside the listening section. This was intentionally left unfixed for this commit at the user's request and should be addressed next. Audio is missing on a small set of N4/N5 listening questions generated locally.
+
+## 2026-08-31 — Deploy, repo restructure, and branding
+
+### The Change
+
+Restructured the repo so the project lives directly at `Kayara/` instead of a `japanese-exam-app` subfolder, rewrote git history for a clean single-commit tree, pushed to `gievano/kayara`, and renamed `package.json` to `kayara`. Ignored `public/audio`, `graphify-out`, and the local agent files (`AGENTS.md`, `CLAUDE.md`). Rewrote the README as branding for the live app and deployed to Vercel.
+
+### The Reasoning
+
+The `Kayara` folder previously held an empty wrapper plus a `japanese-exam-app` subfolder holding the real project, which duplicated names and confused the repo. The final layout keeps one main `Kayara` folder. The audio MP3s (1.5 GB), graphify output, and local agent instructions were not project code and were removed from tracking. The Vercel project was recreated as `kayara` (the old `japanese-exam-app` project was deleted) with `kayara-jlpt.vercel.app` as the live URL, since the bare `kayara.vercel.app` subdomain is already taken by another account.
+
+### The Tech Debt
+
+The Vercel project runs from a local CLI deploy linked to `gievano/kayara`, but the Git integration import of the repo into the new `kayara` project was not re-established, so pushes to GitHub do not auto-deploy; it currently deploys via `vercel --prod` from the linked folder. Fixing the Choukai image visibility bug from the previous entry remains outstanding.
+
