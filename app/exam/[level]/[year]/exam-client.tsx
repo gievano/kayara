@@ -173,7 +173,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
           {item.image && <img src={item.image} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
           {item.audio && <audio controls preload="none" src={item.audio} className="w-full" />}
           {item.options.map((option, optionIndex) => <div key={optionIndex} className="review-answer" data-answer={item.answer === optionIndex} data-picked-wrong={picked === optionIndex && !isCorrect}><span>{optionIndex + 1}. {option}</span><span>{item.answer === optionIndex ? "Jawaban benar" : picked === optionIndex ? "Jawabanmu" : ""}</span></div>)}
-          <div className="explanation"><strong>Pembahasan:</strong> {item.explanation}{item.sourceNote && <span> — {item.sourceNote}</span>}</div>
+          {!isCorrect && <div className="explanation"><strong>Kunci jawaban:</strong> {item.options[item.answer]}</div>}
         </motion.article>)}
       </motion.section>
     </main>;
@@ -215,8 +215,8 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
           {listening && question.question.trim() === "1番" ? <h1 className="question-text">Dengarkan audio, lalu pilih jawaban yang paling tepat.</h1> : question.questionHtml ? <h1 className="question-text" dangerouslySetInnerHTML={{ __html: question.questionHtml }} /> : <h1 className="question-text">{question.question}</h1>}
           {question.image && !listening && <img src={question.image} alt={`Ilustrasi soal ${index + 1}`} loading="lazy" />}
           <div className="answer-list" role="radiogroup" aria-label={`Pilihan soal ${index + 1}`}>{question.options.map((option, optionIndex) => <motion.button whileTap={reduced ? undefined : { y: 1 }} key={optionIndex} role="radio" aria-checked={answers[index] === optionIndex} data-correct={answerVisible && question.answer === optionIndex} onClick={() => setAnswers((previous) => { const next = [...previous]; next[index] = optionIndex; return next; })} className="answer-option"><span className="answer-option__number">{optionIndex + 1}</span><span>{option}</span>{answerVisible && question.answer === optionIndex && <strong className="ml-auto">Jawaban benar</strong>}</motion.button>)}</div>
-          {!isExam && <button onClick={() => setRevealed((previous) => { const next = [...previous]; next[index] = !next[index]; return next; })} className="button-quiet button-small">{revealed[index] ? "Sembunyikan pembahasan" : "Buka pembahasan"}</button>}
-          {answerVisible && <div className="explanation"><strong>Pembahasan:</strong> {question.explanation}{question.sourceNote && <span> — {question.sourceNote}</span>}</div>}
+          {!isExam && <button onClick={() => setRevealed((previous) => { const next = [...previous]; next[index] = !next[index]; return next; })} className="button-quiet button-small">{revealed[index] ? "Sembunyikan kunci" : "Lihat kunci"}</button>}
+          {answerVisible && <div className="explanation"><strong>Kunci jawaban:</strong> {question.options[question.answer]}</div>}
           <div className="question-actions"><button onClick={() => setIndex((value) => Math.max(0, value - 1))} disabled={index === 0} className="button-secondary"><span className="icon-inline"><Arrow left /></span>Sebelumnya</button><span>{index + 1} / {total}</span>{index < total - 1 ? <button onClick={() => setIndex((value) => Math.min(total - 1, value + 1))} className="button-primary question-actions__next">Berikutnya <span className="icon-inline"><Arrow /></span></button> : <button onClick={() => setConfirming(true)} className="button-danger question-actions__next">Selesaikan</button>}</div>
         </motion.section>
       </AnimatePresence>
