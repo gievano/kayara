@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getAvailableExams, getQuestionsByExam } from "@/lib/questions";
+import { getAvailableExams } from "@/lib/questions";
+import { getQuestionsByExam } from "@/lib/questions-server";
 import ExamClient from "./exam-client";
 
 const LEVELS = ["N5", "N4", "N3", "N2", "N1"] as const;

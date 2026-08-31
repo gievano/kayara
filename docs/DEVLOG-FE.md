@@ -60,3 +60,17 @@ The Vercel project `kayara` now connects to the GitHub repo `gievano/kayara` (li
 
 Fixing the Choukai image visibility bug from a previous entry remains outstanding. When a fresh push to GitHub now auto-deploys, environment variables on the machine (`.env.local`) are not on Vercel, so env-dependent behavior must be set in the Vercel project dashboard if any is added later.
 
+## 2026-08-31 — Fix Vercel 100MB limit: move question data to compressed static asset
+
+### The Change
+
+Replaced the build-time `import raw from "@/data/questions.json"` (130MB) with an architecture that keeps the heavy data out of the function bundle. `data/questions.json` is now gzipped to `public/questions.json.gz` (17.9MB) and read server-side by the new `lib/questions-server.ts` (`loadQuestions`, lazy `fs`+`zlib.gunzip` with a module-level cache). `lib/questions.ts` now only ships tiny `lib/metadata.json` (exams per level + per-exam/examCode section counts, ~10KB) and exposes sync metadata helpers (`getAvailableExams`, `getLevelMeta`, `countBySectionForExam`) used by the client components. `data/questions.json` is excluded from Vercel via a new `.vercelignore`. Also replaced the broken `next/font/google` (turbopack couldn't resolve `@vercel/turbopack-next/internal/font/google/font`) with plain Google Fonts `<link>` in `app/layout.tsx` plus OS fallbacks in `app/globals.css`.
+
+### The Reasoning
+
+The build previously bundled the entire 130MB JSON into every server component that imported it, blowing past Vercel's 100MB function-size limit ("File size limit exceeded"). Metadata for listings/counts (homepage, level page, exam existence checks) needs no question content, so it scales down to ~10KB of JSON. Full question arrays are fetched server-side from the static gz only on the exam route, cached across calls. The `next/font/google` error was unrelated to the size problem but equally blocking, so it was replaced with the standard optimized font-loading `<link>`.
+
+### The Tech Debt
+
+`lib/questions-server.ts` is server-only by contract (raw `fs`/`zlib`, no client guard) — a client-side fetch for `questions.json.gz` would be needed if a route ever loads questions in the browser. `getQuestions`/`loadQuestions` in the old `lib/questions.ts` (year-based filtering) were removed since nothing used them; the year-based import in `exam-client.tsx` still references the type-only `Question`/`Section`. The 130MB `data/questions.json` remains in git LFS and `.vercelignore`; it is the single source for regenerating `public/questions.json.gz` and `lib/metadata.json` (e.g., via `gzip -k` + a node script) when questions change.
+

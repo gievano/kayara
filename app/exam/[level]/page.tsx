@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { use } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { countBySection, getAvailableExams, getQuestionsByExam } from "@/lib/questions";
+import { countBySectionForExam, getAvailableExams, getLevelMeta } from "@/lib/questions";
 
 const LEVELS = ["N5", "N4", "N3", "N2", "N1"] as const;
 type Level = (typeof LEVELS)[number];
@@ -45,8 +45,9 @@ export default function LevelPage({ params }: { params: Promise<{ level: string 
   }
 
   const exams = getAvailableExams(candidate);
-  const allQuestions = getQuestionsByExam("all", candidate);
-  const allSections = countBySection(allQuestions);
+  const levelMeta = getLevelMeta(candidate);
+  const allQuestions = { length: levelMeta?.total ?? 0 };
+  const allSections = levelMeta?.sections ?? { vocab: 0, grammar: 0, reading: 0, listening: 0 };
 
   return (
     <main className="page-frame page-main">
@@ -94,8 +95,8 @@ export default function LevelPage({ params }: { params: Promise<{ level: string 
         </motion.article>
 
         {exams.map((code) => {
-          const questions = getQuestionsByExam(code, candidate);
-          const sections = countBySection(questions);
+          const sections = countBySectionForExam(candidate, code);
+          const questions = { length: sections.vocab + sections.grammar + sections.reading + sections.listening };
           return (
             <motion.article key={code} variants={reduced ? {} : cardVariants} whileHover={reduced ? undefined : { y: -3 }} className="packet-card">
               <div className="packet-card__top">

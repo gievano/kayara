@@ -13,16 +13,16 @@
   --line: #cfc5b5;
   --success: #42634b;
   --danger: #9c3027;
-  --font-heading: var(--font-noto-serif);
-  --font-body: var(--font-noto-sans);
+  --font-heading: "Noto Serif JP", serif;
+  --font-body: "Noto Sans JP", sans-serif;
   --shadow-paper: 0 12px 36px rgba(58, 48, 38, 0.08);
 }
 
 @theme inline {
   --color-background: var(--paper);
   --color-foreground: var(--sumi);
-  --font-sans: var(--font-noto-sans);
-  --font-serif: var(--font-noto-serif);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-heading);
 }
 
 * {

@@ -1,20 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
-
-const notoSerif = Noto_Serif_JP({
-  variable: "--font-noto-serif",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const notoSans = Noto_Sans_JP({
-  variable: "--font-noto-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Kayara — Latihan JLPT N5–N1",
@@ -23,8 +9,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="id" className={`${notoSerif.variable} ${notoSans.variable}`}>
-      <body>{children}</body>
+    <html lang="id">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
+      <body>{children}<Analytics /></body>
     </html>
   );
 }

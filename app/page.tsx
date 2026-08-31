@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { LayeredText } from "@/components/ui/layered-text";
-import { getAvailableExams, getQuestionsByExam } from "@/lib/questions";
+import { getLevelMeta } from "@/lib/questions";
 
 const HERO_LINES = [
   { top: "\u00A0", bottom: "日本語" },
@@ -42,9 +42,8 @@ export default function Home() {
   const reduced = Boolean(useReducedMotion());
   const totals = Object.fromEntries(
     LEVELS.map(({ id }) => {
-      const questions = getQuestionsByExam("all", id);
-      const exams = getAvailableExams(id);
-      return [id, { questions: questions.length, exams: exams.length }];
+      const meta = getLevelMeta(id);
+      return [id, { questions: meta?.total ?? 0, exams: meta?.examCount ?? 0 }];
     }),
   ) as Record<(typeof LEVELS)[number]["id"], { questions: number; exams: number }>;
   const grandTotal = LEVELS.reduce((sum, { id }) => sum + totals[id].questions, 0);
@@ -95,8 +94,8 @@ export default function Home() {
               />
             </div>
             <div className="hero__aside-copy">
-              <p className="hero__aside-jp">毎日の一歩が、合格への道になる。</p>
-              <p className="hero__aside-id">Setiap langkah hari ini membawamu lebih dekat menuju kelulusan.</p>
+              <p className="hero__aside-jp">小さな一歩の積み重ねが、合格への道をつくる。</p>
+              <p className="hero__aside-id">Ulangi langkah kecil setiap hari — itulah jalan menuju kelulusan.</p>
             </div>
             <div className="hero__meta">
               <span>{grandTotal} soal</span>
