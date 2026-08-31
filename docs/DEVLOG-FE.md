@@ -74,3 +74,23 @@ The build previously bundled the entire 130MB JSON into every server component t
 
 `lib/questions-server.ts` is server-only by contract (raw `fs`/`zlib`, no client guard) — a client-side fetch for `questions.json.gz` would be needed if a route ever loads questions in the browser. `getQuestions`/`loadQuestions` in the old `lib/questions.ts` (year-based filtering) were removed since nothing used them; the year-based import in `exam-client.tsx` still references the type-only `Question`/`Section`. The 130MB `data/questions.json` remains in git LFS and `.vercelignore`; it is the single source for regenerating `public/questions.json.gz` and `lib/metadata.json` (e.g., via `gzip -k` + a node script) when questions change.
 
+
+
+## 2026-08-31 - Choukai audio & gambar fix (sync 1:1 dengan Ten)
+
+### The Change
+
+- Baru: same-origin audio proxy di `app/api/audio/route.ts` (GET ?u=) — memvalidasi host `drive.usercontent.google.com`, meneruskan `Range` request dari browser, dan mengembalikan response `206`/`audio/mpeg` + `Accept-Ranges: bytes` + `Access-Control-Allow-Origin: *`.
+- `app/exam/[level]/[year]/exam-client.tsx`: `proxyAudio()` menulis ulang `src` audio Drive jadi `/api/audio?u=...` di elemen `<audio>` (layar soal & hasil); `play()` di-hardening (handle Promise rejection `audio.play()`, set `preload="auto"`, dan set `isSpeaking` untuk feedback ikon saat audio diputar). Hapus kondisi `!listening` pada render `question.image` agar gambar choukai N5/N4/N3 muncul.
+- Utility baru: `scripts/sync-listening.mjs` (fetch listening 1:1 dari ten-jlpt-site) dan `scripts/regenerate.mjs` (bangun `public/questions.json.gz` + `lib/metadata.json` dari `data/questions.json`).
+
+### The Reasoning
+
+- `<audio src=drive.usercontent.google.com>` gagal diputar di browser nyata (user: "player ada tapi diam") meski URL valid (206 + CORS open). Root cause paling resisten adalah redirect/set-cookie consent Google yang beda di browser vs fetch node. Proxy same-origin menghilangkan seluruh ketidakpastian CORS/cookie sehingga `<audio>` same-origin dijamin playable & seekable.
+- Gambar listening (opsi ①②③④) sempat tidak dirender karena guard `!listening`; dihapus karena N5/N4/N3 100% punya `image` valid (URL Drive, `<img>` tak terikat CORS).
+
+### The Tech Debt
+
+- `data/questions.json` TERNYATA identik dengan HEAD (LFS sha256 cocok, 9946 soal) — artinya data listening sudah 1:1 dari Ten sejak sebelumnya; session ini tidak mengubah data sama sekali.
+- `lib/metadata.json` + `public/questions.json.gz` hanya beda byte (urutan kunci level + level kompresi), isi semantik sama — sengaja di-revert agar tidak ada churn di commit.
+- 52 soal `test_2` (N4/N5) memang tanpa audio di Ten (`audio: null`, `sec.media.audio: []`) — fallback ke speechSynthesis.

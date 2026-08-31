@@ -10,7 +10,7 @@ const SECTIONS: Section[] = ["vocab", "grammar", "reading", "listening"];
 const LABELS: Record<Section, string> = { vocab: "文字・語彙", grammar: "文法", reading: "読解", listening: "聴解" };
 const MINUTES: Record<string, number> = { N5: 90, N4: 115, N3: 140, N2: 155, N1: 165 };
 
-function proxyAudio(url?: string) {
+function proxied(url?: string) {
   if (!url) return url;
   const u = new URL(url);
   if (u.hostname === "drive.usercontent.google.com") return `/api/audio?u=${encodeURIComponent(url)}`;
@@ -189,8 +189,8 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
         {result.details.map(({ question: item, picked, isCorrect }, itemIndex) => <motion.article key={item.id} variants={reduced ? {} : { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="result-review" data-correct={isCorrect}>
           <div className="question-meta"><span className="tag">{isCorrect ? "Benar" : "Belum dijawab"}</span><span className="tag">Soal {itemIndex + 1}</span><span className="tag">{LABELS[item.section]}</span></div>
           {item.questionHtml ? <p className="question-text" dangerouslySetInnerHTML={{ __html: item.questionHtml }} /> : <p className="question-text">{item.question}</p>}
-          {item.image && <img src={item.image} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
-          {item.audio && <audio controls preload="none" src={proxyAudio(item.audio)} className="w-full" />}
+          {item.image && <img src={proxied(item.image)} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
+          {item.audio && <audio controls preload="none" src={proxied(item.audio)} className="w-full" />}
           {item.options.map((option, optionIndex) => <div key={optionIndex} className="review-answer" data-answer={item.answer === optionIndex} data-picked-wrong={picked === optionIndex && !isCorrect}><span>{optionIndex + 1}. {option}</span><span>{item.answer === optionIndex ? "Jawaban benar" : picked === optionIndex ? "Jawabanmu" : ""}</span></div>)}
           {!isCorrect && <div className="explanation"><strong>Kunci jawaban:</strong> {item.options[item.answer]}</div>}
         </motion.article>)}
@@ -230,9 +230,9 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
       <AnimatePresence mode="wait">
         <motion.section key={index} initial={reduced ? false : { opacity: 0, x: 14 }} animate={{ opacity: 1, x: 0 }} exit={reduced ? undefined : { opacity: 0, x: -10 }} transition={{ duration: 0.24 }} className="question-panel">
           <div className="question-panel__head"><div className="question-meta"><span className="question-number">Soal {index + 1}</span><span className="tag">{LABELS[question.section]}</span><span className="tag">{question.year}</span>{answerVisible && <span className="tag">Kunci terlihat</span>}</div></div>
-          {listening && <div className="media-panel"><div className="media-panel__row"><button onClick={play} className="icon-button" aria-label={isSpeaking ? "Hentikan audio" : "Putar audio"}><Play stop={isSpeaking} /></button><div><strong>Choukai — dengarkan audio</strong><p>{question.audio ? "Audio tersedia untuk soal ini." : "Menggunakan pembaca suara bahasa Jepang."}</p></div></div>{question.audio && <audio id={`audio-${question.id}`} controls preload="none" src={proxyAudio(question.audio)} className="w-full" />}</div>}
+          {listening && <div className="media-panel"><div className="media-panel__row"><button onClick={play} className="icon-button" aria-label={isSpeaking ? "Hentikan audio" : "Putar audio"}><Play stop={isSpeaking} /></button><div><strong>Choukai — dengarkan audio</strong><p>{question.audio ? "Audio tersedia untuk soal ini." : "Menggunakan pembaca suara bahasa Jepang."}</p></div></div>{question.audio && <audio id={`audio-${question.id}`} controls preload="none" src={proxied(question.audio)} className="w-full" />}</div>}
           {listening && question.question.trim() === "1番" ? <h1 className="question-text">Dengarkan audio, lalu pilih jawaban yang paling tepat.</h1> : question.questionHtml ? <h1 className="question-text" dangerouslySetInnerHTML={{ __html: question.questionHtml }} /> : <h1 className="question-text">{question.question}</h1>}
-          {question.image && <img src={question.image} alt={`Ilustrasi soal ${index + 1}`} loading="lazy" />}
+          {question.image && <img src={proxied(question.image)} alt={`Ilustrasi soal ${index + 1}`} loading="lazy" />}
           <div className="answer-list" role="radiogroup" aria-label={`Pilihan soal ${index + 1}`}>{question.options.map((option, optionIndex) => <motion.button whileTap={reduced ? undefined : { y: 1 }} key={optionIndex} role="radio" aria-checked={answers[index] === optionIndex} data-correct={answerVisible && question.answer === optionIndex} onClick={() => setAnswers((previous) => { const next = [...previous]; next[index] = optionIndex; return next; })} className="answer-option"><span className="answer-option__number">{optionIndex + 1}</span><span>{option}</span>{answerVisible && question.answer === optionIndex && <strong className="ml-auto">Jawaban benar</strong>}</motion.button>)}</div>
           {!isExam && <button onClick={() => setRevealed((previous) => { const next = [...previous]; next[index] = !next[index]; return next; })} className="button-quiet button-small">{revealed[index] ? "Sembunyikan kunci" : "Lihat kunci"}</button>}
           {answerVisible && <div className="explanation"><strong>Kunci jawaban:</strong> {question.options[question.answer]}</div>}
