@@ -778,11 +778,21 @@ button:disabled {
 }
 
 .media-panel,
+.passage-panel,
 .explanation {
   margin-bottom: 24px;
   border: 1px solid var(--line);
   background: var(--paper);
   padding: 18px;
+}
+
+.passage-panel {
+  line-height: 1.9;
+  font-size: 15px;
+  max-height: 50vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  border-left: 3px solid var(--accent);
 }
 
 .media-panel__row {

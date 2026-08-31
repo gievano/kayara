@@ -55,18 +55,6 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
     return map;
   }, [questions]);
 
-  const listeningPart = useMemo(() => {
-    if (question.section !== "listening" || !question.audio) return null;
-    const sameExam = questions.filter((q) => q.section === "listening" && q.examCode === question.examCode);
-    const uniq = [...new Set(sameExam.map((q) => q.audio).filter(Boolean) as string[])].sort();
-    const idx = uniq.indexOf(question.audio);
-    if (idx === -1) return null;
-    const group = sameExam.filter((q) => q.audio === question.audio);
-    const start = questions.indexOf(group[0]) + 1;
-    const end = questions.indexOf(group[group.length - 1]) + 1;
-    return { part: idx + 1, total: uniq.length, start, end };
-  }, [question, questions]);
-
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(total).fill(null));
   const [secondsLeft, setSecondsLeft] = useState(initialTime);
@@ -80,6 +68,17 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
   const triggerRef = useRef<HTMLButtonElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const question = questions[index] ?? questions[0];
+  const listeningPart = useMemo(() => {
+    if (question.section !== "listening" || !question.audio) return null;
+    const sameExam = questions.filter((q) => q.section === "listening" && q.examCode === question.examCode);
+    const uniq = [...new Set(sameExam.map((q) => q.audio).filter(Boolean) as string[])].sort();
+    const idx = uniq.indexOf(question.audio);
+    if (idx === -1) return null;
+    const group = sameExam.filter((q) => q.audio === question.audio);
+    const start = questions.indexOf(group[0]) + 1;
+    const end = questions.indexOf(group[group.length - 1]) + 1;
+    return { part: idx + 1, total: uniq.length, start, end };
+  }, [question, questions]);
   const answered = answers.filter((answer) => answer !== null).length;
   const progress = total ? answered / total * 100 : 0;
   const result = useMemo(() => submitted ? calcScore(questions, answers) : null, [submitted, questions, answers]);
@@ -201,6 +200,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
         {result.details.map(({ question: item, picked, isCorrect }, itemIndex) => <motion.article key={item.id} variants={reduced ? {} : { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="result-review" data-correct={isCorrect}>
           <div className="question-meta"><span className="tag">{isCorrect ? "Benar" : "Belum dijawab"}</span><span className="tag">Soal {itemIndex + 1}</span><span className="tag">{LABELS[item.section]}</span></div>
           {item.questionHtml ? <p className="question-text" dangerouslySetInnerHTML={{ __html: item.questionHtml }} /> : <p className="question-text">{item.question}</p>}
+          {item.passageHtml && <div className="passage-panel" dangerouslySetInnerHTML={{ __html: item.passageHtml }} />}
           {item.image && <img src={proxied(item.image)} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
           {item.audio && <audio controls preload="none" src={proxied(item.audio)} className="w-full" />}
           {item.options.map((option, optionIndex) => <div key={optionIndex} className="review-answer" data-answer={item.answer === optionIndex} data-picked-wrong={picked === optionIndex && !isCorrect}><span>{optionIndex + 1}. {option}</span><span>{item.answer === optionIndex ? "Jawaban benar" : picked === optionIndex ? "Jawabanmu" : ""}</span></div>)}
@@ -244,6 +244,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
           <div className="question-panel__head"><div className="question-meta"><span className="question-number">Soal {index + 1}</span><span className="tag">{LABELS[question.section]}</span><span className="tag">{question.year}</span>{answerVisible && <span className="tag">Kunci terlihat</span>}</div></div>
           {listening && <div className="media-panel"><div className="media-panel__row"><button onClick={play} className="icon-button" aria-label={isSpeaking ? "Hentikan audio" : "Putar audio"}><Play stop={isSpeaking} /></button><div><strong>Choukai — {listeningPart ? `Bagian ${listeningPart.part}/${listeningPart.total} • Soal ${listeningPart.start}-${listeningPart.end}` : "dengarkan audio"}</strong><p>{question.audio ? (listeningPart ? `Satu audio untuk ${listeningPart.end - listeningPart.start + 1} soal di bagian ini.` : "Audio tersedia untuk soal ini.") : "Menggunakan pembaca suara bahasa Jepang."}</p></div></div>{question.audio && <audio id={`audio-${question.id}`} controls preload="none" src={proxied(question.audio)} className="w-full" />}</div>}
           {listening && /^\s*(\(れい\)|\d+\s*[番ばん])/.test(question.question) ? <h1 className="question-text">Dengarkan audio, lalu pilih jawaban yang paling tepat.</h1> : question.questionHtml ? <h1 className="question-text" dangerouslySetInnerHTML={{ __html: question.questionHtml }} /> : <h1 className="question-text">{question.question}</h1>}
+          {question.passageHtml && <div className="passage-panel" dangerouslySetInnerHTML={{ __html: question.passageHtml }} />}
           {question.image && <img src={proxied(question.image)} alt={`Ilustrasi soal ${index + 1}`} loading="lazy" />}
           <div className="answer-list" role="radiogroup" aria-label={`Pilihan soal ${index + 1}`}>{question.options.map((option, optionIndex) => <motion.button whileTap={reduced ? undefined : { y: 1 }} key={optionIndex} role="radio" aria-checked={answers[index] === optionIndex} data-correct={answerVisible && question.answer === optionIndex} onClick={() => setAnswers((previous) => { const next = [...previous]; next[index] = optionIndex; return next; })} className="answer-option"><span className="answer-option__number">{optionIndex + 1}</span><span>{option}</span>{answerVisible && question.answer === optionIndex && <strong className="ml-auto">Jawaban benar</strong>}</motion.button>)}</div>
           {!isExam && <button onClick={() => setRevealed((previous) => { const next = [...previous]; next[index] = !next[index]; return next; })} className="button-quiet button-small">{revealed[index] ? "Sembunyikan kunci" : "Lihat kunci"}</button>}
