@@ -2,7 +2,7 @@
 
 Ruang latihan bahasa Jepang untuk persiapan JLPT dari N5 sampai N1. Kayara dibuat untuk berlatih seperti hari ujian, dengan urutan bagian yang sebenarnya: Moji Goi (kosakata), Bunpou Dokkai (grammar dan membaca), lalu Choukai (mendengar).
 
-App sudah bisa dicoba langsung di [kayara-jlpt.vercel.app](https://kayara-jlpt.vercel.app).
+App sudah bisa dicoba langsung di [kayara-jp.vercel.app](https://kayara-jp.vercel.app).
 
 ## Yang ditawarkan
 
