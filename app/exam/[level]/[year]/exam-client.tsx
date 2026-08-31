@@ -55,6 +55,18 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
     return map;
   }, [questions]);
 
+  const listeningPart = useMemo(() => {
+    if (question.section !== "listening" || !question.audio) return null;
+    const sameExam = questions.filter((q) => q.section === "listening" && q.examCode === question.examCode);
+    const uniq = [...new Set(sameExam.map((q) => q.audio).filter(Boolean) as string[])].sort();
+    const idx = uniq.indexOf(question.audio);
+    if (idx === -1) return null;
+    const group = sameExam.filter((q) => q.audio === question.audio);
+    const start = questions.indexOf(group[0]) + 1;
+    const end = questions.indexOf(group[group.length - 1]) + 1;
+    return { part: idx + 1, total: uniq.length, start, end };
+  }, [question, questions]);
+
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(total).fill(null));
   const [secondsLeft, setSecondsLeft] = useState(initialTime);
@@ -230,8 +242,8 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
       <AnimatePresence mode="wait">
         <motion.section key={index} initial={reduced ? false : { opacity: 0, x: 14 }} animate={{ opacity: 1, x: 0 }} exit={reduced ? undefined : { opacity: 0, x: -10 }} transition={{ duration: 0.24 }} className="question-panel">
           <div className="question-panel__head"><div className="question-meta"><span className="question-number">Soal {index + 1}</span><span className="tag">{LABELS[question.section]}</span><span className="tag">{question.year}</span>{answerVisible && <span className="tag">Kunci terlihat</span>}</div></div>
-          {listening && <div className="media-panel"><div className="media-panel__row"><button onClick={play} className="icon-button" aria-label={isSpeaking ? "Hentikan audio" : "Putar audio"}><Play stop={isSpeaking} /></button><div><strong>Choukai — dengarkan audio</strong><p>{question.audio ? "Audio tersedia untuk soal ini." : "Menggunakan pembaca suara bahasa Jepang."}</p></div></div>{question.audio && <audio id={`audio-${question.id}`} controls preload="none" src={proxied(question.audio)} className="w-full" />}</div>}
-          {listening && question.question.trim() === "1番" ? <h1 className="question-text">Dengarkan audio, lalu pilih jawaban yang paling tepat.</h1> : question.questionHtml ? <h1 className="question-text" dangerouslySetInnerHTML={{ __html: question.questionHtml }} /> : <h1 className="question-text">{question.question}</h1>}
+          {listening && <div className="media-panel"><div className="media-panel__row"><button onClick={play} className="icon-button" aria-label={isSpeaking ? "Hentikan audio" : "Putar audio"}><Play stop={isSpeaking} /></button><div><strong>Choukai — {listeningPart ? `Bagian ${listeningPart.part}/${listeningPart.total} • Soal ${listeningPart.start}-${listeningPart.end}` : "dengarkan audio"}</strong><p>{question.audio ? (listeningPart ? `Satu audio untuk ${listeningPart.end - listeningPart.start + 1} soal di bagian ini.` : "Audio tersedia untuk soal ini.") : "Menggunakan pembaca suara bahasa Jepang."}</p></div></div>{question.audio && <audio id={`audio-${question.id}`} controls preload="none" src={proxied(question.audio)} className="w-full" />}</div>}
+          {listening && /^\s*(\(れい\)|\d+\s*[番ばん])/.test(question.question) ? <h1 className="question-text">Dengarkan audio, lalu pilih jawaban yang paling tepat.</h1> : question.questionHtml ? <h1 className="question-text" dangerouslySetInnerHTML={{ __html: question.questionHtml }} /> : <h1 className="question-text">{question.question}</h1>}
           {question.image && <img src={proxied(question.image)} alt={`Ilustrasi soal ${index + 1}`} loading="lazy" />}
           <div className="answer-list" role="radiogroup" aria-label={`Pilihan soal ${index + 1}`}>{question.options.map((option, optionIndex) => <motion.button whileTap={reduced ? undefined : { y: 1 }} key={optionIndex} role="radio" aria-checked={answers[index] === optionIndex} data-correct={answerVisible && question.answer === optionIndex} onClick={() => setAnswers((previous) => { const next = [...previous]; next[index] = optionIndex; return next; })} className="answer-option"><span className="answer-option__number">{optionIndex + 1}</span><span>{option}</span>{answerVisible && question.answer === optionIndex && <strong className="ml-auto">Jawaban benar</strong>}</motion.button>)}</div>
           {!isExam && <button onClick={() => setRevealed((previous) => { const next = [...previous]; next[index] = !next[index]; return next; })} className="button-quiet button-small">{revealed[index] ? "Sembunyikan kunci" : "Lihat kunci"}</button>}
