@@ -94,3 +94,18 @@ The build previously bundled the entire 130MB JSON into every server component t
 - `data/questions.json` TERNYATA identik dengan HEAD (LFS sha256 cocok, 9946 soal) — artinya data listening sudah 1:1 dari Ten sejak sebelumnya; session ini tidak mengubah data sama sekali.
 - `lib/metadata.json` + `public/questions.json.gz` hanya beda byte (urutan kunci level + level kompresi), isi semantik sama — sengaja di-revert agar tidak ada churn di commit.
 - 52 soal `test_2` (N4/N5) memang tanpa audio di Ten (`audio: null`, `sec.media.audio: []`) — fallback ke speechSynthesis.
+
+
+## 2026-08-31 - Fix gambar choukai kosong (proxy image via /api/audio)
+
+### The Change
+
+- `app/exam/[level]/[year]/exam-client.tsx`: rename `proxyAudio` -> `proxied` dan terapkan ke semua `<img src>` (soal & hasil review) selain `<audio>`. Kini `question.image` dan `item.image` yang host-nya `drive.usercontent.google.com` dirender sebagai `/api/audio?u=...` sehingga lolos consent/redirect Google Drive yang bikin `<img>` kosong di browser.
+
+### The Reasoning
+
+- `<img src=drive...>` juga kena cookie consent redirect yang sama seperti `<audio>`; tanpa proxy, browser menampilkan broken image (kosong). Proxy same-origin (`/api/audio`) meneruskan `image/png`/`image/jpeg` dengan header CORS open, jadi gambar N5/N4/N3 (opsi ①②③④) yang 100% punya image kini tampil.
+
+### The Tech Debt
+
+- Endpoint masih bernama `/api/audio` meski kini melayani image juga; rename ke `/api/media` bisa dipertimbangkan bila ada media lain.
