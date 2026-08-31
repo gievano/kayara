@@ -281,8 +281,21 @@ button:disabled {
   max-width: 38ch;
   margin: 0;
   font-family: var(--font-heading);
+}
+
+.hero__aside-jp {
+  margin: 0;
   font-size: clamp(20px, 2.2vw, 30px);
   line-height: 1.55;
+}
+
+.hero__aside-id {
+  margin: 8px 0 0;
+  color: #d8d0c4;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: var(--font-body);
+  font-weight: 400;
 }
 
 .hero__meta {

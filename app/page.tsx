@@ -94,7 +94,10 @@ export default function Home() {
                 lineHeightMd={50}
               />
             </div>
-            <p className="hero__aside-copy">Berlatih seperti hari ujian, memahami seperti saat belajar.</p>
+            <div className="hero__aside-copy">
+              <p className="hero__aside-jp">毎日の一歩が、合格への道になる。</p>
+              <p className="hero__aside-id">Setiap langkah hari ini membawamu lebih dekat menuju kelulusan.</p>
+            </div>
             <div className="hero__meta">
               <span>{grandTotal} soal</span>
               <span>{grandExams} paket</span>

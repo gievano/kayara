@@ -128,7 +128,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
     }
     if (!("speechSynthesis" in window)) return;
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(`${question.question} ${question.options.join(" ")}`);
+    const utterance = new SpeechSynthesisUtterance(question.question);
     utterance.lang = "ja-JP";
     utterance.rate = 0.9;
     utterance.onstart = () => setIsSpeaking(true);
@@ -169,7 +169,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
       <motion.section className="result-review-list" initial={reduced ? false : "hidden"} animate="visible" variants={reduced ? {} : { hidden: {}, visible: { transition: { staggerChildren: 0.025 } } }}>
         {result.details.map(({ question: item, picked, isCorrect }, itemIndex) => <motion.article key={item.id} variants={reduced ? {} : { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="result-review" data-correct={isCorrect}>
           <div className="question-meta"><span className="tag">{isCorrect ? "Benar" : "Perlu ditinjau"}</span><span className="tag">Soal {itemIndex + 1}</span><span className="tag">{LABELS[item.section]}</span></div>
-          <p className="question-text">{item.question}</p>
+          {item.questionHtml ? <p className="question-text" dangerouslySetInnerHTML={{ __html: item.questionHtml }} /> : <p className="question-text">{item.question}</p>}
           {item.image && <img src={item.image} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
           {item.audio && <audio controls preload="none" src={item.audio} className="w-full" />}
           {item.options.map((option, optionIndex) => <div key={optionIndex} className="review-answer" data-answer={item.answer === optionIndex} data-picked-wrong={picked === optionIndex && !isCorrect}><span>{optionIndex + 1}. {option}</span><span>{item.answer === optionIndex ? "Jawaban benar" : picked === optionIndex ? "Jawabanmu" : ""}</span></div>)}

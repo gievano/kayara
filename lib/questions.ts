@@ -16,6 +16,7 @@ export type Question = {
   sourceNote?: string;
   image?: string;
   audio?: string;
+  passageHtml?: string; // scraped from Ten site
 };
 
 const questions = raw as Question[];
