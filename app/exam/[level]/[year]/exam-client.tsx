@@ -168,7 +168,7 @@ export default function ExamClient({ level, yearLabel, questions, storageKey, mo
       <div className="result-actions"><button onClick={restart} className="button-primary">Ulangi paket</button><Link href={`/exam/${level.toLowerCase()}`} className="button-secondary">Pilih paket lain</Link><Link href="/" className="button-quiet">Beranda</Link></div>
       <motion.section className="result-review-list" initial={reduced ? false : "hidden"} animate="visible" variants={reduced ? {} : { hidden: {}, visible: { transition: { staggerChildren: 0.025 } } }}>
         {result.details.map(({ question: item, picked, isCorrect }, itemIndex) => <motion.article key={item.id} variants={reduced ? {} : { hidden: { opacity: 0, y: 10 }, visible: { opacity: 1, y: 0 } }} className="result-review" data-correct={isCorrect}>
-          <div className="question-meta"><span className="tag">{isCorrect ? "Benar" : "Perlu ditinjau"}</span><span className="tag">Soal {itemIndex + 1}</span><span className="tag">{LABELS[item.section]}</span></div>
+          <div className="question-meta"><span className="tag">{isCorrect ? "Benar" : "Belum dijawab"}</span><span className="tag">Soal {itemIndex + 1}</span><span className="tag">{LABELS[item.section]}</span></div>
           {item.questionHtml ? <p className="question-text" dangerouslySetInnerHTML={{ __html: item.questionHtml }} /> : <p className="question-text">{item.question}</p>}
           {item.image && <img src={item.image} alt={`Ilustrasi soal ${itemIndex + 1}`} loading="lazy" />}
           {item.audio && <audio controls preload="none" src={item.audio} className="w-full" />}
