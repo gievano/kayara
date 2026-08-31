@@ -109,3 +109,20 @@ The build previously bundled the entire 130MB JSON into every server component t
 ### The Tech Debt
 
 - Endpoint masih bernama `/api/audio` meski kini melayani image juga; rename ke `/api/media` bisa dipertimbangkan bila ada media lain.
+
+
+## 2026-08-31 - Tampilkan bacaan dokkai (passageHtml) & grouping choukai
+
+### The Change
+
+- `app/exam/[level]/[year]/exam-client.tsx`: render `passageHtml` untuk reading (dokkai) di `passage-panel` sebelum soal; juga di result review. Hilangkan duplikat teks choukai `1ばん` vs `1番` dengan regex `/^\s*(\(れい\)|\d+\s*[番ばん])/` -> tampilkan generik "Dengarkan audio...". Tambah `listeningPart` memo yang hitung `Bagian X/Y • Soal a-b` dari `audio` unik per `examCode` agar 1 track yang dipakai bareng beberapa soal tidak terlihat "numpuk 10 menit per soal".
+- `app/globals.css`: tambah `.passage-panel` (border-left accent, max-height 50vh scroll, line-height 1.9) bersama `.media-panel`.
+
+### The Reasoning
+
+- Dokkai di Ten menampilkan bacaan panjang (`context.html`) terpisah dari prompt; sebelumnya `passageHtml` ada di data (1333 soal) tapi tidak dirender sehingga terlihat kosong untuk teks panjang. Kini ditampilkan 1:1 seperti Ten, di atas soal dengan scroll.
+- Choukai N5/N1/N2 memang per-bagian (mis. N5 test_1: 4 track @1-3 menit untuk 28 soal; N2 07_2011: 1 track 10 menit untuk 31 soal) — sama dengan Ten (`sec.media.audio` 1-5 file, `q.media.audio` per soal nunjuk ke track bagiannya). Label Bagian memperjelas sharing.
+
+### The Tech Debt
+
+- `passageHtml` yang berisi `<img src="listening_images/...">` relatif masih broken di HTML-nya, tapi `question.image` via proxy sudah tampil terpisah. Jika reading nanti punya inline image relatif, perlu rewrite src di HTML string juga.
