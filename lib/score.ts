@@ -25,7 +25,7 @@ export function calcScore(questions: Question[], answers: (number | null)[]): Re
   const details = questions.map((q, i) => {
     perSection[q.section].total++;
     const picked = answers[i] ?? null;
-    const isCorrect = picked === q.answer;
+    const isCorrect = q.answer !== null && picked !== null && picked === q.answer;
     if (isCorrect) {
       correct++;
       perSection[q.section].correct++;

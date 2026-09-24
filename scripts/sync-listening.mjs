@@ -66,6 +66,50 @@ function cleanText(html) {
   return html.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 }
 
+function mediaList(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+function mediaHost(item) {
+  return item?.hostUrl || item?.url || item?.assetKey || null;
+}
+
+function imageMap(q, secOrMedia) {
+  const map = new Map();
+  const media = secOrMedia?.media ?? secOrMedia;
+  for (const item of [...mediaList(q?.media?.images), ...mediaList(media?.images)]) {
+    const url = mediaHost(item);
+    if (!url) continue;
+    if (item.sourcePath) map.set(item.sourcePath, url);
+    if (item.assetKey) map.set(item.assetKey, url);
+    if (item.hostUrl) map.set(item.hostUrl, url);
+  }
+  return map;
+}
+
+function rewriteImageSources(html, map) {
+  return String(html || "").replace(/(<img\b[^>]*?\bsrc\s*=\s*)(["'])(.*?)\2/gi, (all, prefix, quote, src) => {
+    const mapped = map.get(src) || (/^https?:\/\//i.test(src) ? src : null);
+    return mapped ? `${prefix}${quote}${mapped}${quote}` : all;
+  });
+}
+
+function questionImage(q, secOrMedia) {
+  const media = secOrMedia?.media ?? secOrMedia;
+  const own = mediaList(q?.media?.images);
+  const ownImage = own.find((item) => mediaHost(item));
+  if (ownImage) return mediaHost(ownImage);
+  const refs = [...`${q?.prompt?.html || ""}\n${q?.context?.html || ""}`.matchAll(/<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi)].map((m) => m[1]);
+  const item = mediaList(media?.images).find((candidate) => refs.includes(candidate?.sourcePath) || refs.includes(candidate?.assetKey) || refs.includes(candidate?.hostUrl));
+  return item ? mediaHost(item) : null;
+}
+
+function sectionAudio(secOrMedia) {
+  const media = secOrMedia?.media ?? secOrMedia;
+  const list = mediaList(media?.audio);
+  return list.length === 1 ? mediaHost(list[0]) : null;
+}
+
 function toListening(level, examCode, sec, q, secMedia) {
   let year;
   if (/^\d{2}_\d{4}$/.test(examCode)) year = parseInt(examCode.split("_")[1], 10);
@@ -73,34 +117,29 @@ function toListening(level, examCode, sec, q, secMedia) {
   else year = 2019;
   const id = `${level.toLowerCase()}-${examCode}-listening-${String(q.order).padStart(2, "0")}`;
   const rawHtml = q.prompt?.html || q.prompt?.text || q.context?.html || "";
-  const question = cleanText(rawHtml) || cleanText(q.context || q.instruction || "");
-  const questionHtml = rawHtml && rawHtml.includes("<") ? rawHtml : null;
+  const imageUrls = imageMap(q, sec);
+  const question = cleanText(rewriteImageSources(rawHtml, imageUrls)) || cleanText(q.context || q.instruction || "");
+  const questionHtml = rawHtml && rawHtml.includes("<") ? rewriteImageSources(rawHtml, imageUrls) : null;
   const options = q.options.map((o) => cleanText(o.html || o.text));
-  while (options.length < 4) options.push("");
-  const answer = Math.max(0, (q.correctOption ?? 1) - 1);
+  const answer = q.correctOption == null ? null : Math.max(0, q.correctOption - 1);
   const explanation = q.explanation ? cleanText(q.explanation) : "";
   const out = {
     id, exam: "JLPT", level, year, section: "listening",
     question: question || `(listening) Q${q.order}`,
-    options: options.slice(0, 4), answer,
-    explanation: explanation || `Kunci: ${answer + 1}. Sumber ten-site ${level}/${examCode} listening`,
+    options,
+    answer,
+    explanation: explanation || (answer == null ? `Kunci tidak tersedia. Sumber ten-site ${level}/${examCode} listening` : `Kunci: ${answer + 1}. Sumber ten-site ${level}/${examCode} listening`),
     sourceNote: `ten-site ${level}/${examCode} listening Q${q.order} (listening)`,
     examCode,
   };
   if (questionHtml) out.questionHtml = questionHtml;
-  const qImg = q.media?.images?.[0]?.hostUrl || q.media?.images?.[0]?.assetKey;
-  const secImg = secMedia?.images?.[q.order - 1]?.hostUrl || secMedia?.images?.[0]?.hostUrl;
-  if (qImg) out.image = qImg;
-  else if (secImg) out.image = secImg;
-  const qAudio = q.media?.audio?.hostUrl || (Array.isArray(q.media?.audio) ? q.media.audio[0]?.hostUrl : null);
-  const secAudioList = Array.isArray(secMedia?.audio)
-    ? secMedia.audio
-    : secMedia?.audio ? [secMedia.audio] : [];
-  // Only a one-track section is a legitimate shared fallback. Never use
-  // audio[0] to fill a missing question in a multi-track Ten section.
-  const secAudio = secAudioList.length === 1 ? secAudioList[0]?.hostUrl : null;
-  if (qAudio) out.audio = qAudio;
-  else if (secAudio) out.audio = secAudio;
+  if (questionHtml && imageUrls.size) out.questionHtml = rewriteImageSources(questionHtml, imageUrls);
+  const image = questionImage(q, secMedia);
+  if (image) out.image = image;
+  const qAudio = mediaList(q.media?.audio)[0];
+  const secAudio = sectionAudio(secMedia);
+  const audio = mediaHost(qAudio) || secAudio;
+  if (audio) out.audio = audio;
   return out;
 }
 

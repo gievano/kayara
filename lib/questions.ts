@@ -10,8 +10,8 @@ export type Question = {
   section: Section;
   question: string;
   questionHtml?: string;
-  options: [string, string, string, string];
-  answer: number;
+  options: string[];
+  answer: number | null;
   explanation: string;
   sourceNote?: string;
   image?: string;

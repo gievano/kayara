@@ -58,12 +58,67 @@ function cleanText(html) {
   return html.replace(/<[^>]+>/g, "").replace(/&nbsp;/g, " ").replace(/\s+/g, " ").trim();
 }
 
-// strip trailing div junk inside context.html of ten
-function cleanPassage(html) {
-  if (!html) return null;
-  let s = html.replace(/\s*<\/div>\s*$/g, "").trim();
-  s = s.replace(/<br\s*\/?>\s*(<br\s*\/?>)+/gi, "<br/><br/>").trim();
-  return s || null;
+function mediaList(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+function mediaHost(item) {
+  return item?.hostUrl || item?.url || item?.assetKey || null;
+}
+
+function imageMap(q, sectionOrMedia) {
+  const map = new Map();
+  const media = sectionOrMedia?.media ?? sectionOrMedia;
+  for (const item of [...mediaList(q?.media?.images), ...mediaList(media?.images)]) {
+    const url = mediaHost(item);
+    if (!url) continue;
+    if (item.sourcePath) map.set(item.sourcePath, url);
+    if (item.assetKey) map.set(item.assetKey, url);
+    if (item.hostUrl) map.set(item.hostUrl, url);
+  }
+  return map;
+}
+
+function rewriteImageSources(html, map) {
+  return String(html || "").replace(
+    /(<img\b[^>]*?\bsrc\s*=\s*)(["'])(.*?)\2/gi,
+    (all, prefix, quote, src) => {
+      const mapped = map.get(src) || (/^https?:\/\//i.test(src) ? src : null);
+      return mapped ? `${prefix}${quote}${mapped}${quote}` : all;
+    },
+  );
+}
+
+function meaningfulContext(context, imageUrls) {
+  if (!context) return null;
+  const html = typeof context === "string" ? context : context.html || "";
+  const text = typeof context === "string" ? cleanText(context) : cleanText(context.text || "") || cleanText(html);
+  if (!text && !/<(?:img|table|svg|iframe|canvas)\b/i.test(html)) return null;
+  let s = rewriteImageSources(html, imageUrls).replace(/\s*<\/div>\s*$/g, "").trim();
+  s = s.replace(/<br\s*\/?>\s*(?:<br\s*\/?>)+/gi, "<br/><br/>").trim();
+  return s || text || null;
+}
+
+function questionImage(q, secOrMedia) {
+  const media = secOrMedia?.media ?? secOrMedia;
+  void media;
+  const own = mediaList(q?.media?.images);
+  const ownImage = own.find((item) => mediaHost(item));
+  if (ownImage) return mediaHost(ownImage);
+  const refs = [...`${q.prompt?.html || ""}\n${q.context?.html || ""}`.matchAll(/<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']/gi)].map((m) => m[1]);
+  const item = mediaList(media?.images).find((candidate) => refs.includes(candidate?.sourcePath) || refs.includes(candidate?.assetKey) || refs.includes(candidate?.hostUrl));
+  return item ? mediaHost(item) : null;
+}
+
+function sectionAudio(secOrMedia) {
+  const media = secOrMedia?.media ?? secOrMedia;
+  const list = mediaList(media?.audio);
+  return list.length === 1 ? mediaHost(list[0]) : null;
+}
+
+function questionAudio(q, sec) {
+  const own = mediaList(q.media?.audio);
+  return mediaHost(own[0]) || sectionAudio(sec);
 }
 
 function toQuestion(level, examCode, sec, q) {
@@ -72,41 +127,29 @@ function toQuestion(level, examCode, sec, q) {
   else year = 2019;
   const secName = ["vocab", "grammar", "reading", "listening"].includes(sec.section) ? sec.section : "reading";
   const id = `${level.toLowerCase()}-${examCode}-${secName}-${String(q.order).padStart(2, "0")}`;
+  const imageUrls = imageMap(q, sec);
   const rawHtml = q.prompt?.html || q.prompt?.text || "";
-  const question = cleanText(rawHtml) || cleanText(q.context?.text || q.instruction || "");
-  const questionHtml = rawHtml && rawHtml.includes("<") ? rawHtml : null;
+  const question = cleanText(rewriteImageSources(rawHtml, imageUrls)) || cleanText(q.context?.text || q.instruction || "");
+  const questionHtml = rawHtml && rawHtml.includes("<") ? rewriteImageSources(rawHtml, imageUrls) : null;
   const options = (q.options || []).map((o) => cleanText(o.html || o.text));
-  while (options.length < 4) options.push("");
-  const answer = Math.max(0, (q.correctOption ?? 1) - 1);
+  const answer = q.correctOption == null ? null : Math.max(0, q.correctOption - 1);
   const explanation = q.explanation ? cleanText(q.explanation) : "";
   const out = {
     id, exam: "JLPT", level, year, section: secName,
     question: question || `(${secName}) Q${q.order}`,
-    options: options.slice(0, 4), answer,
-    explanation: explanation || `Kunci: ${answer + 1}. Sumber ten-site ${level}/${examCode} ${sec.section}`,
+    options,
+    answer,
+    explanation: explanation || (answer == null ? `Kunci tidak tersedia. Sumber ten-site ${level}/${examCode} ${sec.section}` : `Kunci: ${answer + 1}. Sumber ten-site ${level}/${examCode} ${sec.section}`),
     sourceNote: `ten-site ${level}/${examCode} ${sec.section} Q${q.order} (${secName})`,
     examCode,
   };
   if (questionHtml) out.questionHtml = questionHtml;
-  const ctx = q.context;
-  if (ctx && (ctx.html || ctx.text)) {
-    const passage = cleanPassage(ctx.html);
-    if (passage) out.passageHtml = passage;
-    else out.question = cleanText(ctx.text || ctx.html) || out.question;
-  }
-  const qImg = q.media?.images?.[0]?.hostUrl || q.media?.images?.[0]?.assetKey;
-  const secImg = sec.media?.images?.[q.order - 1]?.hostUrl || sec.media?.images?.[0]?.hostUrl;
-  if (qImg) out.image = qImg;
-  else if (secImg) out.image = secImg;
-  const qAudio = q.media?.audio?.hostUrl || (Array.isArray(q.media?.audio) ? q.media.audio[0]?.hostUrl : null);
-  const secAudioList = Array.isArray(sec.media?.audio)
-    ? sec.media.audio
-    : sec.media?.audio ? [sec.media.audio] : [];
-  // Ten uses a single section track for older exams. A multi-track section
-  // must not invent a track for a question whose own media is absent.
-  const secAudio = secAudioList.length === 1 ? secAudioList[0]?.hostUrl : null;
-  if (qAudio) out.audio = qAudio;
-  else if (secAudio) out.audio = secAudio;
+  const passage = meaningfulContext(q.context, imageUrls);
+  if (passage) out.passageHtml = passage;
+  const image = questionImage(q, sec);
+  if (image) out.image = image;
+  const audio = questionAudio(q, sec);
+  if (audio) out.audio = audio;
   return out;
 }
 
