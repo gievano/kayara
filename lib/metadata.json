@@ -1,1 +1,1077 @@
-{"N5":{"exams":["test_1","test_2"],"total":190,"sections":{"vocab":71,"grammar":0,"reading":67,"listening":52},"examsDetail":{"test_1":{"count":97,"sections":{"vocab":36,"grammar":0,"reading":33,"listening":28}},"test_2":{"count":93,"sections":{"vocab":35,"grammar":0,"reading":34,"listening":24}}}},"N4":{"exams":["07_2014","07_2017","07_2021","07_2023","07_2024","12_2018","12_2021","12_2024","test_1","test_2"],"total":805,"sections":{"vocab":317,"grammar":0,"reading":320,"listening":168},"examsDetail":{"07_2014":{"count":69,"sections":{"vocab":35,"grammar":0,"reading":34,"listening":0}},"07_2017":{"count":96,"sections":{"vocab":34,"grammar":0,"reading":34,"listening":28}},"07_2021":{"count":85,"sections":{"vocab":28,"grammar":0,"reading":29,"listening":28}},"07_2023":{"count":57,"sections":{"vocab":28,"grammar":0,"reading":29,"listening":0}},"07_2024":{"count":85,"sections":{"vocab":28,"grammar":0,"reading":29,"listening":28}},"12_2018":{"count":99,"sections":{"vocab":35,"grammar":0,"reading":36,"listening":28}},"12_2021":{"count":84,"sections":{"vocab":27,"grammar":0,"reading":29,"listening":28}},"12_2024":{"count":57,"sections":{"vocab":28,"grammar":0,"reading":29,"listening":0}},"test_1":{"count":75,"sections":{"vocab":39,"grammar":0,"reading":36,"listening":0}},"test_2":{"count":98,"sections":{"vocab":35,"grammar":0,"reading":35,"listening":28}}}},"N3":{"exams":["07_2010","07_2011","07_2012","07_2013","07_2014","07_2015","07_2016","07_2017","07_2018","07_2019","07_2021","07_2022","07_2023","07_2024","07_2025","12_2011","12_2012","12_2013","12_2014","12_2015","12_2016","12_2017","12_2018","12_2019","12_2020","12_2021","12_2022","12_2023","12_2024"],"total":2917,"sections":{"vocab":1014,"grammar":0,"reading":1121,"listening":782},"examsDetail":{"07_2010":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2011":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":27}},"07_2012":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2013":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2014":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2015":{"count":74,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":0}},"07_2016":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2017":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2018":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2019":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"07_2021":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"07_2022":{"count":100,"sections":{"vocab":34,"grammar":0,"reading":38,"listening":28}},"07_2023":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"07_2024":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"07_2025":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"12_2011":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":27}},"12_2012":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2013":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2014":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2015":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2016":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2017":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2018":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2019":{"count":102,"sections":{"vocab":35,"grammar":0,"reading":39,"listening":28}},"12_2020":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"12_2021":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"12_2022":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"12_2023":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}},"12_2024":{"count":101,"sections":{"vocab":35,"grammar":0,"reading":38,"listening":28}}}},"N2":{"exams":["07_2010","07_2011","07_2012","07_2013","07_2014","07_2015","07_2016","07_2017","07_2018","07_2019","07_2021","07_2022","07_2023","07_2024","07_2025","12_2010","12_2011","12_2012","12_2013","12_2014","12_2015","12_2016","12_2017","12_2018","12_2019","12_2020","12_2021","12_2022","12_2023","12_2024"],"total":3134,"sections":{"vocab":1584,"grammar":0,"reading":621,"listening":929},"examsDetail":{"07_2010":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2011":{"count":106,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":31}},"07_2012":{"count":106,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":31}},"07_2013":{"count":106,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":31}},"07_2014":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2015":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2016":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2017":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2018":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"07_2019":{"count":103,"sections":{"vocab":52,"grammar":0,"reading":21,"listening":30}},"07_2021":{"count":102,"sections":{"vocab":51,"grammar":0,"reading":21,"listening":30}},"07_2022":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"07_2023":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"07_2024":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"07_2025":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"12_2010":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2011":{"count":106,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":31}},"12_2012":{"count":106,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":31}},"12_2013":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2014":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2015":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2016":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2017":{"count":107,"sections":{"vocab":54,"grammar":0,"reading":21,"listening":32}},"12_2018":{"count":103,"sections":{"vocab":52,"grammar":0,"reading":21,"listening":30}},"12_2019":{"count":102,"sections":{"vocab":52,"grammar":0,"reading":20,"listening":30}},"12_2020":{"count":102,"sections":{"vocab":51,"grammar":0,"reading":21,"listening":30}},"12_2021":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"12_2022":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"12_2023":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}},"12_2024":{"count":101,"sections":{"vocab":51,"grammar":0,"reading":20,"listening":30}}}},"N1":{"exams":["07_2010","07_2011","07_2012","07_2013","07_2014","07_2015","07_2016","07_2017","07_2018","07_2019","07_2021","07_2022","07_2023","07_2024","07_2025","12_2010","12_2011","12_2012","12_2013","12_2014","12_2015","12_2016","12_2017","12_2018","12_2019","12_2020","12_2021","12_2022","12_2023","12_2024"],"total":2900,"sections":{"vocab":1340,"grammar":0,"reading":729,"listening":831},"examsDetail":{"07_2010":{"count":71,"sections":{"vocab":45,"grammar":0,"reading":26,"listening":0}},"07_2011":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"07_2012":{"count":70,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":0}},"07_2013":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"07_2014":{"count":107,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":37}},"07_2015":{"count":107,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":37}},"07_2016":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"07_2017":{"count":105,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":35}},"07_2018":{"count":105,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":35}},"07_2019":{"count":104,"sections":{"vocab":45,"grammar":0,"reading":24,"listening":35}},"07_2021":{"count":104,"sections":{"vocab":44,"grammar":0,"reading":25,"listening":35}},"07_2022":{"count":103,"sections":{"vocab":44,"grammar":0,"reading":24,"listening":35}},"07_2023":{"count":96,"sections":{"vocab":44,"grammar":0,"reading":22,"listening":30}},"07_2024":{"count":96,"sections":{"vocab":44,"grammar":0,"reading":22,"listening":30}},"07_2025":{"count":65,"sections":{"vocab":44,"grammar":0,"reading":21,"listening":0}},"12_2010":{"count":71,"sections":{"vocab":45,"grammar":0,"reading":26,"listening":0}},"12_2011":{"count":70,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":0}},"12_2012":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"12_2013":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"12_2014":{"count":107,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":37}},"12_2015":{"count":107,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":37}},"12_2016":{"count":107,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":37}},"12_2017":{"count":105,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":35}},"12_2018":{"count":106,"sections":{"vocab":45,"grammar":0,"reading":25,"listening":36}},"12_2019":{"count":104,"sections":{"vocab":45,"grammar":0,"reading":24,"listening":35}},"12_2020":{"count":68,"sections":{"vocab":44,"grammar":0,"reading":24,"listening":0}},"12_2021":{"count":104,"sections":{"vocab":44,"grammar":0,"reading":25,"listening":35}},"12_2022":{"count":96,"sections":{"vocab":44,"grammar":0,"reading":22,"listening":30}},"12_2023":{"count":96,"sections":{"vocab":44,"grammar":0,"reading":22,"listening":30}},"12_2024":{"count":96,"sections":{"vocab":44,"grammar":0,"reading":22,"listening":30}}}}}
+{
+  "N5": {
+    "exams": [
+      "test_1",
+      "test_2"
+    ],
+    "total": 190,
+    "sections": {
+      "vocab": 71,
+      "grammar": 0,
+      "reading": 67,
+      "listening": 52
+    },
+    "examsDetail": {
+      "test_1": {
+        "count": 97,
+        "sections": {
+          "vocab": 36,
+          "grammar": 0,
+          "reading": 33,
+          "listening": 28
+        }
+      },
+      "test_2": {
+        "count": 93,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 34,
+          "listening": 24
+        }
+      }
+    }
+  },
+  "N4": {
+    "exams": [
+      "07_2014",
+      "07_2017",
+      "07_2021",
+      "07_2023",
+      "07_2024",
+      "12_2018",
+      "12_2021",
+      "12_2024",
+      "test_1",
+      "test_2"
+    ],
+    "total": 805,
+    "sections": {
+      "vocab": 317,
+      "grammar": 0,
+      "reading": 320,
+      "listening": 168
+    },
+    "examsDetail": {
+      "07_2014": {
+        "count": 69,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 34,
+          "listening": 0
+        }
+      },
+      "07_2017": {
+        "count": 96,
+        "sections": {
+          "vocab": 34,
+          "grammar": 0,
+          "reading": 34,
+          "listening": 28
+        }
+      },
+      "07_2021": {
+        "count": 85,
+        "sections": {
+          "vocab": 28,
+          "grammar": 0,
+          "reading": 29,
+          "listening": 28
+        }
+      },
+      "07_2023": {
+        "count": 57,
+        "sections": {
+          "vocab": 28,
+          "grammar": 0,
+          "reading": 29,
+          "listening": 0
+        }
+      },
+      "07_2024": {
+        "count": 85,
+        "sections": {
+          "vocab": 28,
+          "grammar": 0,
+          "reading": 29,
+          "listening": 28
+        }
+      },
+      "12_2018": {
+        "count": 99,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 36,
+          "listening": 28
+        }
+      },
+      "12_2021": {
+        "count": 84,
+        "sections": {
+          "vocab": 27,
+          "grammar": 0,
+          "reading": 29,
+          "listening": 28
+        }
+      },
+      "12_2024": {
+        "count": 57,
+        "sections": {
+          "vocab": 28,
+          "grammar": 0,
+          "reading": 29,
+          "listening": 0
+        }
+      },
+      "test_1": {
+        "count": 75,
+        "sections": {
+          "vocab": 39,
+          "grammar": 0,
+          "reading": 36,
+          "listening": 0
+        }
+      },
+      "test_2": {
+        "count": 98,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 35,
+          "listening": 28
+        }
+      }
+    }
+  },
+  "N3": {
+    "exams": [
+      "07_2010",
+      "07_2011",
+      "07_2012",
+      "07_2013",
+      "07_2014",
+      "07_2015",
+      "07_2016",
+      "07_2017",
+      "07_2018",
+      "07_2019",
+      "07_2021",
+      "07_2022",
+      "07_2023",
+      "07_2024",
+      "07_2025",
+      "12_2011",
+      "12_2012",
+      "12_2013",
+      "12_2014",
+      "12_2015",
+      "12_2016",
+      "12_2017",
+      "12_2018",
+      "12_2019",
+      "12_2020",
+      "12_2021",
+      "12_2022",
+      "12_2023",
+      "12_2024"
+    ],
+    "total": 2917,
+    "sections": {
+      "vocab": 1014,
+      "grammar": 0,
+      "reading": 1121,
+      "listening": 782
+    },
+    "examsDetail": {
+      "07_2010": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2011": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 27
+        }
+      },
+      "07_2012": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2013": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2014": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2015": {
+        "count": 74,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 0
+        }
+      },
+      "07_2016": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2017": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2018": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2019": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "07_2021": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "07_2022": {
+        "count": 100,
+        "sections": {
+          "vocab": 34,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "07_2023": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "07_2024": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "07_2025": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "12_2011": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 27
+        }
+      },
+      "12_2012": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2013": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2014": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2015": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2016": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2017": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2018": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2019": {
+        "count": 102,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 39,
+          "listening": 28
+        }
+      },
+      "12_2020": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "12_2021": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "12_2022": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "12_2023": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      },
+      "12_2024": {
+        "count": 101,
+        "sections": {
+          "vocab": 35,
+          "grammar": 0,
+          "reading": 38,
+          "listening": 28
+        }
+      }
+    }
+  },
+  "N2": {
+    "exams": [
+      "07_2010",
+      "07_2011",
+      "07_2012",
+      "07_2013",
+      "07_2014",
+      "07_2015",
+      "07_2016",
+      "07_2017",
+      "07_2018",
+      "07_2019",
+      "07_2021",
+      "07_2022",
+      "07_2023",
+      "07_2024",
+      "07_2025",
+      "12_2010",
+      "12_2011",
+      "12_2012",
+      "12_2013",
+      "12_2014",
+      "12_2015",
+      "12_2016",
+      "12_2017",
+      "12_2018",
+      "12_2019",
+      "12_2020",
+      "12_2021",
+      "12_2022",
+      "12_2023",
+      "12_2024"
+    ],
+    "total": 3134,
+    "sections": {
+      "vocab": 1584,
+      "grammar": 0,
+      "reading": 621,
+      "listening": 929
+    },
+    "examsDetail": {
+      "07_2010": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2011": {
+        "count": 106,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 31
+        }
+      },
+      "07_2012": {
+        "count": 106,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 31
+        }
+      },
+      "07_2013": {
+        "count": 106,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 31
+        }
+      },
+      "07_2014": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2015": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2016": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2017": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2018": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "07_2019": {
+        "count": 103,
+        "sections": {
+          "vocab": 52,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 30
+        }
+      },
+      "07_2021": {
+        "count": 102,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 30
+        }
+      },
+      "07_2022": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "07_2023": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "07_2024": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "07_2025": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "12_2010": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2011": {
+        "count": 106,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 31
+        }
+      },
+      "12_2012": {
+        "count": 106,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 31
+        }
+      },
+      "12_2013": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2014": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2015": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2016": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2017": {
+        "count": 107,
+        "sections": {
+          "vocab": 54,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 32
+        }
+      },
+      "12_2018": {
+        "count": 103,
+        "sections": {
+          "vocab": 52,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 30
+        }
+      },
+      "12_2019": {
+        "count": 102,
+        "sections": {
+          "vocab": 52,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "12_2020": {
+        "count": 102,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 30
+        }
+      },
+      "12_2021": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "12_2022": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "12_2023": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      },
+      "12_2024": {
+        "count": 101,
+        "sections": {
+          "vocab": 51,
+          "grammar": 0,
+          "reading": 20,
+          "listening": 30
+        }
+      }
+    }
+  },
+  "N1": {
+    "exams": [
+      "07_2010",
+      "07_2011",
+      "07_2012",
+      "07_2013",
+      "07_2014",
+      "07_2015",
+      "07_2016",
+      "07_2017",
+      "07_2018",
+      "07_2019",
+      "07_2021",
+      "07_2022",
+      "07_2023",
+      "07_2024",
+      "07_2025",
+      "12_2010",
+      "12_2011",
+      "12_2012",
+      "12_2013",
+      "12_2014",
+      "12_2015",
+      "12_2016",
+      "12_2017",
+      "12_2018",
+      "12_2019",
+      "12_2020",
+      "12_2021",
+      "12_2022",
+      "12_2023",
+      "12_2024"
+    ],
+    "total": 2900,
+    "sections": {
+      "vocab": 1340,
+      "grammar": 0,
+      "reading": 729,
+      "listening": 831
+    },
+    "examsDetail": {
+      "07_2010": {
+        "count": 71,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 26,
+          "listening": 0
+        }
+      },
+      "07_2011": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "07_2012": {
+        "count": 70,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 0
+        }
+      },
+      "07_2013": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "07_2014": {
+        "count": 107,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 37
+        }
+      },
+      "07_2015": {
+        "count": 107,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 37
+        }
+      },
+      "07_2016": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "07_2017": {
+        "count": 105,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 35
+        }
+      },
+      "07_2018": {
+        "count": 105,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 35
+        }
+      },
+      "07_2019": {
+        "count": 104,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 24,
+          "listening": 35
+        }
+      },
+      "07_2021": {
+        "count": 104,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 35
+        }
+      },
+      "07_2022": {
+        "count": 103,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 24,
+          "listening": 35
+        }
+      },
+      "07_2023": {
+        "count": 96,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 22,
+          "listening": 30
+        }
+      },
+      "07_2024": {
+        "count": 96,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 22,
+          "listening": 30
+        }
+      },
+      "07_2025": {
+        "count": 65,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 21,
+          "listening": 0
+        }
+      },
+      "12_2010": {
+        "count": 71,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 26,
+          "listening": 0
+        }
+      },
+      "12_2011": {
+        "count": 70,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 0
+        }
+      },
+      "12_2012": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "12_2013": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "12_2014": {
+        "count": 107,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 37
+        }
+      },
+      "12_2015": {
+        "count": 107,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 37
+        }
+      },
+      "12_2016": {
+        "count": 107,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 37
+        }
+      },
+      "12_2017": {
+        "count": 105,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 35
+        }
+      },
+      "12_2018": {
+        "count": 106,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 36
+        }
+      },
+      "12_2019": {
+        "count": 104,
+        "sections": {
+          "vocab": 45,
+          "grammar": 0,
+          "reading": 24,
+          "listening": 35
+        }
+      },
+      "12_2020": {
+        "count": 68,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 24,
+          "listening": 0
+        }
+      },
+      "12_2021": {
+        "count": 104,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 25,
+          "listening": 35
+        }
+      },
+      "12_2022": {
+        "count": 96,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 22,
+          "listening": 30
+        }
+      },
+      "12_2023": {
+        "count": 96,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 22,
+          "listening": 30
+        }
+      },
+      "12_2024": {
+        "count": 96,
+        "sections": {
+          "vocab": 44,
+          "grammar": 0,
+          "reading": 22,
+          "listening": 30
+        }
+      }
+    }
+  }
+}

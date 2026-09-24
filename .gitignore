@@ -50,3 +50,4 @@ next-env.d.ts
 # local agent instructions (not project code)
 AGENTS.md
 CLAUDE.md
+scrape-full.log
