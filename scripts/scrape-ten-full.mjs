@@ -99,7 +99,12 @@ function toQuestion(level, examCode, sec, q) {
   if (qImg) out.image = qImg;
   else if (secImg) out.image = secImg;
   const qAudio = q.media?.audio?.hostUrl || (Array.isArray(q.media?.audio) ? q.media.audio[0]?.hostUrl : null);
-  const secAudio = Array.isArray(sec.media?.audio) ? sec.media.audio[q.order - 1]?.hostUrl || sec.media.audio[0]?.hostUrl : sec.media?.audio?.hostUrl;
+  const secAudioList = Array.isArray(sec.media?.audio)
+    ? sec.media.audio
+    : sec.media?.audio ? [sec.media.audio] : [];
+  // Ten uses a single section track for older exams. A multi-track section
+  // must not invent a track for a question whose own media is absent.
+  const secAudio = secAudioList.length === 1 ? secAudioList[0]?.hostUrl : null;
   if (qAudio) out.audio = qAudio;
   else if (secAudio) out.audio = secAudio;
   return out;

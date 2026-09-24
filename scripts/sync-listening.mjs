@@ -93,7 +93,12 @@ function toListening(level, examCode, sec, q, secMedia) {
   if (qImg) out.image = qImg;
   else if (secImg) out.image = secImg;
   const qAudio = q.media?.audio?.hostUrl || (Array.isArray(q.media?.audio) ? q.media.audio[0]?.hostUrl : null);
-  const secAudio = Array.isArray(secMedia?.audio) ? secMedia.audio[q.order - 1]?.hostUrl || secMedia.audio[0]?.hostUrl : secMedia?.audio?.hostUrl;
+  const secAudioList = Array.isArray(secMedia?.audio)
+    ? secMedia.audio
+    : secMedia?.audio ? [secMedia.audio] : [];
+  // Only a one-track section is a legitimate shared fallback. Never use
+  // audio[0] to fill a missing question in a multi-track Ten section.
+  const secAudio = secAudioList.length === 1 ? secAudioList[0]?.hostUrl : null;
   if (qAudio) out.audio = qAudio;
   else if (secAudio) out.audio = secAudio;
   return out;
